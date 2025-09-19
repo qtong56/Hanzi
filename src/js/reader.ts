@@ -69,7 +69,8 @@ class HanziReader {
       this.log(`Loaded ${this.articles.length} articles`);
 
     } catch (error) {
-      throw new Error(`Failed to load data: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      throw new Error(`Failed to load data: ${errorMessage}`);
     }
   }
 
@@ -279,9 +280,9 @@ class HanziReader {
     });
 
     // Update URL without page reload
-    const url = new URL(window.location);
+    const url = new URL(window.location.href);
     url.searchParams.set('article', slug);
-    window.history.pushState({}, '', url);
+    window.history.pushState({}, '', url.toString());
   }
 
   public completeArticle(): void {
@@ -303,9 +304,9 @@ class HanziReader {
     this.renderArticleList();
 
     // Update URL
-    const url = new URL(window.location);
+    const url = new URL(window.location.href);
     url.searchParams.delete('article');
-    window.history.pushState({}, '', url);
+    window.history.pushState({}, '', url.toString());
   }
 
   private loadUserProgress(): UserProgress {
