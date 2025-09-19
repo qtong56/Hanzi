@@ -1,0 +1,22 @@
+{
+  "现在": { "pinyin": "xiànzài", "translation": "now, currently", "hskLevel": 4, "frequency": 1 },
+  "城市": { "pinyin": "chéngshì", "translation": "city, urban", "hskLevel": 4, "frequency": 2 },
+  "生活": { "pinyin": "shēnghuó", "translation": "life, living", "hskLevel": 4, "frequency": 3 },
+  "和": { "pinyin": "hé", "translation": "and, with", "hskLevel": 4, "frequency": 4 },
+  "以前": { "pinyin": "yǐqián", "translation": "before, previously", "hskLevel": 4, "frequency": 5 },
+  "很": { "pinyin": "hěn", "translation": "very, quite", "hskLevel": 4, "frequency": 6 },
+  "不": { "pinyin": "bù", "translation": "not, no", "hskLevel": 4, "frequency": 7 },
+  "一样": { "pinyin": "yīyàng", "translation": "same, alike", "hskLevel": 4, "frequency": 8 },
+  "人们": { "pinyin": "rénmen", "translation": "people", "hskLevel": 4, "frequency": 9 },
+  "主要": { "pinyin": "zhǔyào", "translation": "mainly, primary", "hskLevel": 4, "frequency": 10 },
+  "用": { "pinyin": "yòng", "translation": "use, with", "hskLevel": 4, "frequency": 11 },
+  "现金": { "pinyin": "xiànjīn", "translation": "cash", "hskLevel": 5, "frequency": 12 },
+  "买": { "pinyin": "mǎi", "translation": "buy", "hskLevel": 4, "frequency": 13 },
+  "东西": { "pinyin": "dōngxi", "translation": "things, stuff", "hskLevel": 4, "frequency": 14 },
+  "大家": { "pinyin": "dàjiā", "translation": "everyone", "hskLevel": 4, "frequency": 15 },
+  "都": { "pinyin": "dōu", "translation": "all, both", "hskLevel": 4, "frequency": 16 },
+  "手机": { "pinyin": "shǒujī", "translation": "mobile phone", "hskLevel": 4, "frequency": 17 },
+  "支付": { "pinyin": "zhīfù", "translation": "payment, pay", "hskLevel": 5, "frequency": 18 },
+  "科技": { "pinyin": "kējì", "translation": "technology", "hskLevel": 5, "frequency": 19 },
+  "便利": { "pinyin": "biànlì", "translation": "convenient", "hskLevel": 5, "frequency": 20 }
+}

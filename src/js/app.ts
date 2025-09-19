@@ -6,47 +6,47 @@ interface AppConfig {
 
 class HanziApp {
   private config: AppConfig;
-  
+
   constructor() {
     this.config = {
-      debug: location.hostname === 'localhost',
-      version: '1.0.0'
+      debug: location.hostname === "localhost",
+      version: "1.0.0",
     };
-    
-    this.log('Hanzi app initializing...');
+
+    this.log("Hanzi app initializing...");
     this.init();
   }
-  
+
   private async init(): Promise<void> {
     try {
       this.setupEventListeners();
-      this.log('App initialized successfully');
+      this.log("App initialized successfully");
     } catch (error) {
-      this.handleError('Failed to initialize app', error);
+      this.handleError("Failed to initialize app", error);
     }
   }
-  
+
   private setupEventListeners(): void {
     // Global error handling
-    window.addEventListener('error', (event) => {
-      this.handleError('Uncaught error', event.error);
+    window.addEventListener("error", (event) => {
+      this.handleError("Uncaught error", event.error);
     });
-    
+
     // Handle CTA button clicks
-    document.querySelectorAll('.cta-button').forEach(button => {
-      button.addEventListener('click', (e) => {
-        this.log('User clicked start reading');
+    document.querySelectorAll(".cta-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        this.log("User clicked start reading");
         // Analytics would go here
       });
     });
   }
-  
+
   private log(message: string, data?: any): void {
     if (this.config.debug) {
-      console.log(`[Hanzi] ${message}`, data || '');
+      console.log(`[Hanzi] ${message}`, data || "");
     }
   }
-  
+
   private handleError(message: string, error: any): void {
     console.error(`[Hanzi Error] ${message}:`, error);
     // Error reporting would go here
@@ -54,6 +54,6 @@ class HanziApp {
 }
 
 // Initialize app
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   new HanziApp();
 });

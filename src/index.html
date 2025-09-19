@@ -1,37 +1,183 @@
-<!-- src/index.html - Landing page -->
+<!-- src/index.html - Redesigned landing page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hanzi - Chinese Reading Practice</title>
-    <meta name="description" content="Practice reading Chinese with instant translations">
+    <title>Hanzi - Master Chinese Reading</title>
+    <meta name="description" content="Practice reading Chinese with instant translations. Click any character for pinyin and meaning.">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-    <main class="container">
-        <header class="hero">
-            <h1>汉字 Hanzi</h1>
-            <p>Practice reading Chinese with instant translations</p>
-            <a href="./reader.html" class="cta-button">Start Reading</a>
-        </header>
-        
-        <section class="features">
-            <div class="feature">
-                <h3>Instant Translation</h3>
-                <p>Click any Chinese character for pinyin and meaning</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>✨ Free Chinese Reading Practice</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Master Chinese Reading with 
+                    <span class="text-gradient">汉字 Hanzi</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Click any Chinese character for instant translation, pinyin, and HSK level. 
+                    Practice reading with articles perfectly matched to your vocabulary level.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="./reader.html" class="btn btn-primary btn-large">
+                        Start Reading Now
+                        <span class="btn-icon">→</span>
+                    </a>
+                    <a href="#features" class="btn btn-secondary btn-large">
+                        Learn More
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Vocabulary Words</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">HSK 4-6</div>
+                        <div class="stat-label">Difficulty Levels</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Free to Use</div>
+                    </div>
+                </div>
             </div>
-            <div class="feature">
-                <h3>HSK Levels</h3>
-                <p>Articles matched to your vocabulary level</p>
+            
+            <div class="hero-demo">
+                <div class="demo-window">
+                    <div class="demo-header">
+                        <div class="demo-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="demo-title">Reading Practice</div>
+                    </div>
+                    <div class="demo-content">
+                        <div class="demo-text">
+                            <span class="demo-char" data-tooltip="xiànzài - now">现在</span>的
+                            <span class="demo-char" data-tooltip="chéngshì - city">城市</span>
+                            <span class="demo-char" data-tooltip="shēnghuó - life">生活</span>很
+                            <span class="demo-char" data-tooltip="fāngbiàn - convenient">方便</span>
+                        </div>
+                        <div class="demo-tooltip">
+                            <div class="tooltip-word">现在</div>
+                            <div class="tooltip-pinyin">xiànzài</div>
+                            <div class="tooltip-translation">now, currently</div>
+                            <div class="tooltip-hsk">HSK 4</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="feature">
-                <h3>Progress Tracking</h3>
-                <p>Track your reading progress automatically</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Hanzi?</h2>
+                <p>The smartest way to practice Chinese reading</p>
             </div>
-        </section>
-    </main>
-    
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Instant Translation</h3>
+                    <p>Click any Chinese character for immediate pinyin, translation, and HSK level. No dictionary lookups needed.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Perfect Difficulty</h3>
+                    <p>Articles matched to your HSK level with 60-80% known vocabulary for optimal learning flow.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile-First</h3>
+                    <p>Read anywhere, anytime. Optimized for mobile with touch-friendly translation interface.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Automatic vocabulary tracking. See your progress as you encounter new words and complete articles.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>No loading delays. Instant translations and smooth reading experience that keeps you in flow.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🆓</div>
+                    <h3>Completely Free</h3>
+                    <p>No subscriptions, no ads, no limits. Quality Chinese reading practice accessible to everyone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>Three simple steps to better Chinese reading</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Choose Your Level</h3>
+                        <p>Select articles matched to HSK 4, 5, or 6 based on your current vocabulary knowledge.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Read & Click</h3>
+                        <p>Read naturally and click any unknown character for instant translation and pronunciation.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Track Progress</h3>
+                        <p>Your vocabulary encounters are automatically tracked to help match future articles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Improve Your Chinese Reading?</h2>
+                <p>Join thousands of learners practicing with Hanzi</p>
+                <a href="./reader.html" class="btn btn-primary btn-large">
+                    Start Reading Today
+                    <span class="btn-icon">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <script type="module" src="./js/app.ts"></script>
 </body>
 </html>

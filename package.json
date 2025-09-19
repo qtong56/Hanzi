@@ -7,15 +7,18 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && npm run move-files",
-    "move-files": "mv dist/src/* dist/ && rmdir dist/src", 
+    "move-files": "mv dist/src/* dist/ && rmdir dist/src",
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
+    "lint": "eslint src",
+    "format": "prettier --write src/**/*.{ts,js,html,css}",
     "deploy": "npm run build && gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.35.0",
     "@types/node": "^24.5.1",
     "@typescript-eslint/eslint-plugin": "^8.44.0",
     "@typescript-eslint/parser": "^8.44.0",
