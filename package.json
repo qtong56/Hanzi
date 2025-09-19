@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build", 
+    "build": "tsc && vite build && npm run move-files",
+    "move-files": "mv dist/src/* dist/ && rmdir dist/src", 
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
     "deploy": "npm run build && gh-pages -d dist"
