@@ -1,23 +1,14 @@
-// vite.config.js - Production-ready from day 1
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vite'
+import { resolve } from 'path'
 
 export default defineConfig({
-  root: 'src',
   build: {
-    outDir: '../dist',
-    emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: 'src/index.html',
-        reader: 'src/reader.html'
+        main: resolve(__dirname, 'src/index.html'),
+        reader: resolve(__dirname, 'src/reader.html')
       }
     }
   },
-  server: {
-    port: 3000,
-    open: true,
-    host: true // Allow network access for mobile testing
-  },
-  // GitHub Pages deployment
-  base: process.env.NODE_ENV === 'production' ? '/hanzi/' : '/'
-});
+  base: '/Hanzi/'
+})
