@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
+import fs from 'fs'
 
 export default defineConfig(({ command }) => ({
   root: 'src',
@@ -16,8 +17,29 @@ export default defineConfig(({ command }) => ({
         chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]'
       }
-    }
+    },
   },
+  plugins: [
+    {
+      name: 'copy-data',
+      closeBundle() {
+        // Copy data directory to dist
+        const srcDataDir = resolve(__dirname, 'src/data')
+        const distDataDir = resolve(__dirname, 'dist/data')
+        
+        if (fs.existsSync(srcDataDir)) {
+          fs.mkdirSync(distDataDir, { recursive: true })
+          const files = fs.readdirSync(srcDataDir)
+          files.forEach(file => {
+            fs.copyFileSync(
+              resolve(srcDataDir, file),
+              resolve(distDataDir, file)
+            )
+          })
+        }
+      }
+    }
+  ],
   // Only use /Hanzi/ base for production builds
   base: command === 'build' ? '/Hanzi/' : '/',
   server: {
