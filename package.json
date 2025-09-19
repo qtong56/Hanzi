@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && npm run move-files",
-    "move-files": "mv dist/src/* dist/ && rmdir dist/src",
+    "move-files": "echo 'Files already in correct location'",
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
     "lint": "eslint src",
