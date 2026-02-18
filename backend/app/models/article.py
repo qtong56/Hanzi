@@ -1,6 +1,8 @@
 from sqlalchemy import Column, Integer, String, Text, TIMESTAMP, func
 from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.orm import Mapped, mapped_column
 from app.database import Base
+from typing import Optional, List, Dict, Any
 
 class Article(Base):
     """
@@ -21,7 +23,7 @@ class Article(Base):
     hsk_level = Column(Integer)
 
     # Segmented text stored as JSON array
-    segments = Column(JSONB)
+    segments: Mapped[Optional[List[Dict[str, Any]]]] = mapped_column(JSONB, nullable=True)
 
     # Timestamps
     created_at = Column(TIMESTAMP, server_default=func.now())
