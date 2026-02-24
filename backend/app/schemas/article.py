@@ -7,12 +7,12 @@ class SegmentSchema(BaseModel):
     text: str
     start: int
     end: int
-    pinyin: int
+    pinyin: str
 
 class ArticleBase(BaseModel):
     """Base article fields"""
     title: str
-    text: int
+    text: str
     summary: Optional[str] = None
     hsk_level: Optional[int] = None
 
@@ -42,9 +42,11 @@ class ArticleListItem(BaseModel):
     word_count: Optional[int] = None
 
     class Config:
-        from_attribute = True
+        from_attributes = True
 
-class ArticlesListResponse(BaseModel):
+class ArticleListResponse(BaseModel):
     """List of articles"""
-    articles: List[ArticleResponse]
+    articles: List[ArticleListItem]
     total: int
+    limit: int
+    offset: int
