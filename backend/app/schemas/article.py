@@ -25,6 +25,7 @@ class ArticleResponse(ArticleBase):
     """API response returned (full text with segments)"""
     id: int
     hsk_level: Optional[int] = None
+    hsk_level_counts: Optional[Dict[str, int]] = None
     word_count: Optional[int] = None
     unique_char_count: Optional[int] = None
     segments: Optional[List[SegmentSchema]] = None
@@ -39,6 +40,7 @@ class ArticleListItem(BaseModel):
     title: str
     summary: Optional[str] = None
     hsk_level: Optional[int] = None
+    hsk_level_counts: Optional[Dict[str, int]] = None
     word_count: Optional[int] = None
 
     class Config:

@@ -1,6 +1,6 @@
 from app.models.article import Article, Base
 from app.database import engine, SessionLocal
-from app.services.segmentation import segment_text, estimate_hsk_level
+from app.services.segmentation import segment_text, estimate_hsk_level, dominant_hsk_level
 
 def test_create_article_with_segments():
     """Test creating article with auto-segmentation"""
@@ -21,8 +21,10 @@ def test_create_article_with_segments():
         # Calculate metadata
         word_count = len(segments)
         unique_chars = len(set(text))
-        hsk_level = estimate_hsk_level(text)
-        
+        counts = estimate_hsk_level(text)
+        hsk_level = dominant_hsk_level(counts, word_count)
+        hsk_level_counts = {str(k): v for k, v in counts.items()}
+
         # Create article
         article = Article(
             title="中国",
@@ -30,24 +32,27 @@ def test_create_article_with_segments():
             segments=segments,  # Store as JSONB
             word_count=word_count,
             unique_char_count=unique_chars,
-            hsk_level=hsk_level
+            hsk_level=hsk_level,
+            hsk_level_counts=hsk_level_counts,
         )
-        
+
         db.add(article)
         db.commit()
         db.refresh(article)
-        
+
         print(f"\n✓ Created article with ID: {article.id}")
         print(f"  Word count: {article.word_count}")
         print(f"  Unique chars: {article.unique_char_count}")
-        print(f"  HSK level: {article.hsk_level}")
-        print(f"  Segments stored: {len(article.segments)}")
-        
+        print(f"  HSK level (80% coverage): {article.hsk_level}")
+        print(f"  HSK counts: {article.hsk_level_counts}")
+        stored_segs = article.segments or []
+        print(f"  Segments stored: {len(stored_segs)}")
+
         # Verify we can query and retrieve segments
         retrieved = db.query(Article).filter(Article.id == article.id).first()
-        assert retrieved.segments is not None, "Segments should be stored"
+        assert retrieved is not None and retrieved.segments is not None, "Segments should be stored"
         assert len(retrieved.segments) == len(segments), "Segment count should match"
-        
+
         print(f"\n✓ Segments retrieved correctly from database")
         print(f"\nFirst 3 segments:")
         for seg in retrieved.segments[:3]:
@@ -103,9 +108,11 @@ def test_segmentation():
         ("中国是一个历史悠久的国家。中国有很多人口。" * 5, 2),  # More unique chars
     ]
     
-    for text, expected_min_level in texts:
-        level = estimate_hsk_level(text)
-        print(f"  '{text[:20]}...' → HSK {level}")
+    for text, _ in texts:
+        segs = segment_text(text)
+        counts = estimate_hsk_level(text)
+        level = dominant_hsk_level(counts, len(segs))
+        print(f"  '{text[:20]}...' → counts={counts}, 80%-coverage HSK {level}")
     
     print(f"\n✓ All segmentation tests passed")
     return True

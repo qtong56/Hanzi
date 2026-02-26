@@ -10,7 +10,7 @@ from app.schemas.article import (
     ArticleListResponse,
     ArticleListItem
 )
-from app.services.segmentation import segment_text, estimate_hsk_level
+from app.services.segmentation import segment_text, estimate_hsk_level, dominant_hsk_level, count_chinese_chars
 
 router = APIRouter()
 
@@ -18,7 +18,7 @@ router = APIRouter()
 def get_articles(
     skip: int = Query(0, ge=0, description="Number of items to skip"),
     limit: int = Query(20, ge=1, le=100, description="Number of items to return"),
-    hsk_level: Optional[int] = Query(None, ge=1, le=6, description="Filter by HSK level"),
+    hsk_level: Optional[int] = Query(None, ge=1, le=7, description="Filter by HSK level"),
     db: Session = Depends(get_db)
 ):
     """
@@ -82,9 +82,11 @@ def create_article(
     segments = segment_text(article_data.text)
 
     # Calculate metadata
-    word_count = len(segments)
+    word_count = count_chinese_chars(article_data.text)
     unique_char_count = len(set(article_data.text))
-    hsk_level = estimate_hsk_level(article_data.text)
+    counts = estimate_hsk_level(article_data.text)
+    hsk_level = dominant_hsk_level(counts, count_chinese_chars(article_data.text))
+    hsk_level_counts = {str(k): v for k, v in counts.items()}
 
     # Generate summary (first 100 characters)
     summary = article_data.summary
@@ -101,7 +103,8 @@ def create_article(
         segments=segments,
         word_count = word_count,
         unique_char_count = unique_char_count,
-        hsk_level = hsk_level
+        hsk_level = hsk_level,
+        hsk_level_counts = hsk_level_counts,
     )
 
     db.add(article)
@@ -128,15 +131,17 @@ def update_article(
     
     # Resegment the text
     segments = segment_text(article_data.text)
+    counts = estimate_hsk_level(article_data.text)
 
     # Update fields
     article.title = article_data.title
     article.text = article_data.text
     article.summary = article_data.summary
     article.segments = segments
-    article.word_count = len(segments)
-    article.unique_char_count = len(set(segments))
-    article.hsk_level = estimate_hsk_level(article_data.text)
+    article.word_count = count_chinese_chars(article_data.text)
+    article.unique_char_count = len(set(article_data.text))
+    article.hsk_level = dominant_hsk_level(counts, count_chinese_chars(article_data.text))
+    article.hsk_level_counts = {str(k): v for k, v in counts.items()}
 
     db.commit()
     db.refresh(article)

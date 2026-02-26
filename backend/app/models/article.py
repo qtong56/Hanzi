@@ -22,6 +22,7 @@ class Article(Base):
 
     # Difficulty
     hsk_level: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    hsk_level_counts: Mapped[Optional[Dict[str, Any]]] = mapped_column(JSONB, nullable=True)
 
     # Segmented text stored as JSON array
     segments: Mapped[Optional[List[Dict[str, Any]]]] = mapped_column(JSONB, nullable=True)
