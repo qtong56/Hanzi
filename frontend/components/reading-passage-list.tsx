@@ -3,14 +3,14 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { useQuery } from "@tanstack/react-query"
-import { getArticles, hskLevelColor, HSK_LEVEL_COLORS } from "@/lib/api"
+import { getArticles, HSK_LEVEL_COLORS } from "@/lib/api"
+import { HskBar } from "@/components/hsk-bar"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const PAGE_SIZE = 20
-const HSK_LEVELS = [1, 2, 3, 4, 5, 6]
+const HSK_LEVELS = [1, 2, 3, 4, 5, 6, 7]
 
 function ArticleListSkeleton() {
   return (
@@ -96,9 +96,7 @@ export function ReadingPassageList() {
                         <CardHeader className="p-4 sm:p-6">
                           <div className="mb-3 flex items-start justify-between gap-2">
                             <div className="font-serif text-xl sm:text-2xl font-semibold">{article.title}</div>
-                            <Badge className={hskLevelColor(article.hsk_level)} variant="secondary">
-                              {`HSK ${article.hsk_level}`}
-                            </Badge>
+                            <HskBar counts={article.hsk_level_counts} hskLevel={article.hsk_level} compact />
                           </div>
                           <CardTitle className="text-base sm:text-lg text-muted-foreground font-normal">
                             {article.word_count != null ? `${article.word_count} words` : ""}

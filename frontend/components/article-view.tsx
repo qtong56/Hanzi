@@ -1,10 +1,10 @@
 "use client"
 
 import { useQuery } from "@tanstack/react-query"
-import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { InteractivePassage } from "@/components/interactive-passage"
-import { getArticle, hskLevelColor } from "@/lib/api"
+import { HskBar } from "@/components/hsk-bar"
+import { getArticle } from "@/lib/api"
 
 function ReadingViewSkeleton() {
   return (
@@ -47,11 +47,7 @@ export function ArticleView({ articleId }: { articleId: number }) {
               <p className="text-sm text-muted-foreground">{`${article.word_count} words`}</p>
             )}
           </div>
-          {article.hsk_level != null && (
-            <Badge className={hskLevelColor(article.hsk_level)} variant="secondary">
-              {`HSK ${article.hsk_level}`}
-            </Badge>
-          )}
+          <HskBar counts={article.hsk_level_counts} hskLevel={article.hsk_level} />
         </div>
         <p className="text-sm sm:text-base text-muted-foreground">
           {"Click any word to see its pinyin and meaning"}

@@ -6,7 +6,7 @@ export default function AboutPage() {
     <div className="min-h-screen">
       <NavHeader />
 
-      <div className="container px-4 py-12 sm:px-6">
+      <div className="container mx-auto px-4 py-8 sm:px-6 sm:py-12">
         <div className="mx-auto max-w-3xl">
           <h1 className="mb-6 text-4xl font-bold">{"About Hanzi"}</h1>
 

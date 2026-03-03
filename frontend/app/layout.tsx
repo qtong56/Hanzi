@@ -23,11 +23,11 @@ export const metadata: Metadata = {
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/icon-dark-32x32.png",
+        url: "icons8-open-book-ios-17-outlined-32.png",
         media: "(prefers-color-scheme: dark)",
       },
       {
-        url: "/icon.svg",
+        url: "/icons8-open-book-ios-17-outlined-32.png",
         type: "image/svg+xml",
       },
     ],

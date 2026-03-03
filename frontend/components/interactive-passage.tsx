@@ -40,7 +40,10 @@ function TranslationContent({ translation }: { translation: TranslationResponse 
     )
   }
   return (
-    <div className="space-y-1">
+    <div className="space-y-1.5">
+      {translation.hsk_level != null && (
+        <p className="text-xs font-medium text-muted-foreground">{`HSK ${translation.hsk_level}`}</p>
+      )}
       {translation.definitions?.slice(0, 3).map((def, i) => (
         <p key={i} className="text-sm leading-snug">
           <span className="text-muted-foreground mr-1">{i + 1}.</span>
@@ -105,9 +108,19 @@ function WordPopover({ segment, text }: WordPopoverProps) {
           </div>
 
           <div className="pt-2 border-t border-border">
-            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">
-              {"Sentence"}
-            </p>
+            <div className="flex items-center justify-between mb-1">
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                {"Sentence"}
+              </p>
+              <a
+                href={`https://translate.google.com/?sl=zh-CN&tl=en&text=${encodeURIComponent(sentence)}&op=translate`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-muted-foreground hover:text-foreground underline underline-offset-2"
+              >
+                {"Translate →"}
+              </a>
+            </div>
             <p className="text-sm sm:text-base font-serif wrap-break-word">{sentence}</p>
           </div>
         </div>

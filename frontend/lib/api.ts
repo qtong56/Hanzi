@@ -14,6 +14,7 @@ export interface ArticleListItem {
   title: string
   summary: string | null
   hsk_level: number | null
+  hsk_level_counts: Record<string, number> | null
   word_count: number | null
 }
 
@@ -37,6 +38,18 @@ export const HSK_LEVEL_COLORS: Record<number, string> = {
   4: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-100",
   5: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100",
   6: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100",
+  7: "bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-900 dark:text-fuchsia-100",
+}
+
+// Bar fill colors for the HskBar chart (one per level 1-7)
+export const HSK_BAR_COLORS: Record<number, string> = {
+  1: "bg-green-500",
+  2: "bg-blue-500",
+  3: "bg-yellow-500",
+  4: "bg-orange-500",
+  5: "bg-red-500",
+  6: "bg-purple-500",
+  7: "bg-fuchsia-500",
 }
 
 export function hskLevelColor(level: number | null): string {
@@ -59,7 +72,7 @@ export async function getArticles(params?: {
 }
 
 export async function getArticle(id: number): Promise<Article> {
-  const res = await fetch(`${API_BASE}/api/articles/${id}`, { next: { revalidate: 60 } })
+  const res = await fetch(`${API_BASE}/api/articles/${id}`, { cache: "no-store" })
   if (!res.ok) throw new Error(`Failed to fetch article ${id}: ${res.status}`)
   return res.json()
 }

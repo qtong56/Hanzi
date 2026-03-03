@@ -21,9 +21,6 @@ export function NavHeader() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="/" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-            Home
-          </Link>
           <Link
             href="/reading"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
